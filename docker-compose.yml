@@ -1,0 +1,22 @@
+services:
+  backend:
+    build: ./backend
+    environment:
+      DJANGO_DEBUG: "true"
+      DJANGO_SECRET_KEY: "docker-development-secret-change-in-production"
+      DJANGO_ALLOWED_HOSTS: "localhost,127.0.0.1,backend,frontend"
+      SQLITE_PATH: "/app/data/db.sqlite3"
+    volumes:
+      - django_data:/app/data
+    restart: unless-stopped
+
+  frontend:
+    build: ./frontend
+    depends_on:
+      - backend
+    ports:
+      - "3000:80"
+    restart: unless-stopped
+
+volumes:
+  django_data:
