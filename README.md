@@ -40,10 +40,15 @@ Microphone access works on `localhost` or HTTPS. If recording is unavailable, ev
 ## Run with Docker
 
 ```bash
-docker compose up --build
+docker compose up --build -d
 ```
 
-Open `http://localhost:3000`. Django migrations run automatically, and the SQLite database is persisted in the `django_data` volume.
+Open `http://localhost:3000`. The `-d` flag runs the containers in the background (detached mode). Django migrations run automatically, and the SQLite database is persisted in the `django_data` volume.
+
+To view the logs if needed:
+```bash
+docker compose logs -f
+```
 
 Stop the containers without deleting the database:
 
