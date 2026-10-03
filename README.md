@@ -43,6 +43,11 @@ Microphone access works on `localhost` or HTTPS. If recording is unavailable, ev
 docker compose up --build -d
 ```
 
+Once the containers are running, you must seed the database with initial users and contacts so you can log in:
+```bash
+docker compose exec backend python seed.py
+```
+
 Open `http://localhost:3000`. The `-d` flag runs the containers in the background (detached mode). Django migrations run automatically, and the SQLite database is persisted in the `django_data` volume.
 
 To view the logs if needed:
